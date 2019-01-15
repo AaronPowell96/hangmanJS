@@ -1,4 +1,4 @@
-const game1 = new Hangman("cat", 3);
+const game1 = new Hangman("cat", 2);
 const guessesEl = document.querySelector("#guesses");
 const puzzleEl = document.querySelector("#puzzle");
 

@@ -2,6 +2,8 @@ const Hangman = function(word, guesses) {
   this.word = word.toLowerCase().split("");
   this.guessedLetters = [];
   this.guesses = guesses;
+  this.status = "playing";
+  console.log(this.status);
 };
 
 Hangman.prototype.getPuzzle = function() {
@@ -15,14 +17,24 @@ Hangman.prototype.getPuzzle = function() {
 };
 
 Hangman.prototype.guess = function(guess) {
-  guess = guess.toLowerCase();
-  const isUnique = !this.guessedLetters.includes(guess);
-  const isBadGuess = !this.word.includes(guess);
-  if (isUnique) {
-    this.guessedLetters.push(guess);
+  if ((this.status = "playing")) {
+    guess = guess.toLowerCase();
+    const isUnique = !this.guessedLetters.includes(guess);
+    const isBadGuess = !this.word.includes(guess);
+    if (isUnique) {
+      this.guessedLetters.push(guess);
+    }
+    if (isUnique && isBadGuess) {
+      this.guesses--;
+    }
+    this.calculateStatus();
+    console.log(this.status);
   }
+};
 
-  if (isUnique && isBadGuess) {
-    this.guesses--;
-  }
+Hangman.prototype.calculateStatus = function() {
+  const finished = this.getPuzzle() === this.word.join("");
+  if (this.guesses <= 0) this.status = "failed";
+  else if (finished) this.status = "finished";
+  else this.status = "playing";
 };
