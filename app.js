@@ -12,16 +12,20 @@ window.addEventListener("keypress", e => {
   guessesEl.textContent = game1.message;
 });
 
-const request = new XMLHttpRequest();
-
-request.addEventListener("readystatechange", e => {
-  if (e.target.readyState === 4 && e.target.status === 200) {
-    const data = JSON.parse(e.target.responseText);
+getPuzzle("2").then(
+  data => {
     console.log(data);
-    const country = data.find(country => country.alpha2Code === "GB");
-    console.log(country.name);
-  } else if (e.target.readyState === 4) console.log("Unable to fetch data");
-});
+  },
+  err => {
+    console.log(`error: ${err}`);
+  }
+);
 
-request.open("GET", "http://restcountries.eu/rest/v2/all");
-request.send();
+getCountryDetails("GB").then(
+  data => {
+    console.log(data.name);
+  },
+  error => {
+    console.log(`Error: ${error}`);
+  }
+);
