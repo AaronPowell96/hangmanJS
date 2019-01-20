@@ -1,1 +1,1 @@
-"# hangman with JS"
+"# Hangman using ES6 Javascript and async-await with fetchAPI"
