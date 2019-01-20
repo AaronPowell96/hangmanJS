@@ -12,8 +12,15 @@ window.addEventListener("keypress", e => {
 });
 
 const render = () => {
-  puzzleEl.textContent = `Word: ${game1.puzzle}`;
+  puzzleEl.innerHTML = "";
   guessesEl.textContent = game1.message;
+
+  let puzzleArr = game1.puzzle.split("");
+  puzzleArr.forEach(letter => {
+    let span = document.createElement("span");
+    span.textContent = letter;
+    puzzleEl.appendChild(span);
+  });
 };
 
 const startGame = async () => {
