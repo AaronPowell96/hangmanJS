@@ -20,9 +20,20 @@ getPuzzle("2")
     console.log(`Error: ${err}`);
   });
 
-getCountryDetails("GB")
-  .then(data => {
-    console.log(data);
+// getCountryDetails("GB")
+//   .then(data => {
+//     console.log(data);
+//   })
+//   .catch(error => {
+//     console.log(`Error: ${error}`);
+//   });
+
+getLocation()
+  .then(location => {
+    return getCountryDetails(location.country);
+  })
+  .then(country => {
+    console.log(`${country.name}`);
   })
   .catch(error => {
     console.log(`Error: ${error}`);

@@ -22,7 +22,18 @@ const getCountryDetails = cCode => {
       }
     })
     .then(data => {
-      const country = data.find(country => country.alpha2Code === `${cCode}`);
-      return country.name;
+      return data.find(country => country.alpha2Code === `${cCode}`);
     });
+};
+
+// http://ipinfo.io/json?token=1a11bd55cc8f9c
+
+const getLocation = () => {
+  return fetch("http://ipinfo.io/json?token=1a11bd55cc8f9c").then(response => {
+    if (response.status === 200) {
+      return response.json();
+    } else {
+      throw new Error(`Lol`);
+    }
+  });
 };
