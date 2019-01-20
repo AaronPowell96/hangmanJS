@@ -30,3 +30,9 @@ const getLocation = async () => {
     throw new Error(`Lol`);
   }
 };
+
+const getCurrentCountry = async () => {
+  const location = await getLocation();
+  return getCountryDetails(location.country);
+  //Same as storing await function and returning variable
+};
