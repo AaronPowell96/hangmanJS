@@ -12,20 +12,18 @@ window.addEventListener("keypress", e => {
   guessesEl.textContent = game1.message;
 });
 
-getPuzzle("2").then(
-  data => {
-    console.log(data);
-  },
-  err => {
-    console.log(`error: ${err}`);
-  }
-);
+getPuzzle("2")
+  .then(puzzle => {
+    console.log(puzzle);
+  })
+  .catch(err => {
+    console.log(`Error: ${err}`);
+  });
 
-getCountryDetails("GB").then(
-  data => {
-    console.log(data.name);
-  },
-  error => {
+getCountryDetails("GB")
+  .then(data => {
+    console.log(data);
+  })
+  .catch(error => {
     console.log(`Error: ${error}`);
-  }
-);
+  });
